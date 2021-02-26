@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name = "adapterData"
+            type = "com.tom.book.room.Contact" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context = ".MainActivity">
+
+        <TextView
+            android:id="@+id/te_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginBottom="671dp"
+            android:text="@{Integer.toString(adapterData.contactNum)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/te_bookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="77dp"
+            android:layout_marginLeft="77dp"
+            android:text="@{adapterData.contactName}"
+            app:layout_constraintBottom_toBottomOf="@+id/te_number"
+            app:layout_constraintStart_toEndOf="@+id/te_number"
+            app:layout_constraintTop_toTopOf="@+id/te_number" />
+
+        <TextView
+            android:id="@+id/te_bookPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:text="@{Integer.toString(adapterData.contactPrice)}"
+            app:layout_constraintBottom_toBottomOf="@+id/te_bookName"
+            app:layout_constraintStart_toEndOf="@+id/te_bookName"
+            app:layout_constraintTop_toTopOf="@+id/te_bookName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
