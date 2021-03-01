@@ -41,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@+id/te_bookName" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/ed_bookname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="@+id/te_bookName" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/ed_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"

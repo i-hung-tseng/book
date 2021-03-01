@@ -9,6 +9,9 @@
         <variable
             name = "adapterData"
             type = "com.tom.book.room.Contact" />
+        <variable
+            name="viewModel"
+            type="com.tom.book.title.TitleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
