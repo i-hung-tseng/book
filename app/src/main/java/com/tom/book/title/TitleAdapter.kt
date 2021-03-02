@@ -20,6 +20,9 @@ class TitleAdapter(private val contacts:ArrayList<Contact>):
         }
     }
 
+
+
+
     override fun onCreateViewHolder(parent:ViewGroup, position: Int):ViewHolder{
         val inflater = LayoutInflater.from(parent.context)
         val binding = AdapterTitleBinding.inflate(inflater)

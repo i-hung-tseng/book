@@ -70,7 +70,7 @@ class TitleFragment : Fragment() {
 
 
         binding.btnAdd.setOnClickListener(){
-            var newBookName = binding.edBookname.toString()
+            var newBookName = binding.edBookname.text.toString()
             var newprice = binding.edPrice.text.toString().toInt()
             if(newBookName.isNullOrBlank()){
                 Toast.makeText(requireActivity(),"請輸入有效名稱!",Toast.LENGTH_LONG).show()
