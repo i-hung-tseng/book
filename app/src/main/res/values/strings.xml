@@ -2,4 +2,7 @@
     <string name="app_name">Book</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--    需要有以下才可以換成 String-->
+    <string name="quote_format">\%s\</string>
 </resources>
