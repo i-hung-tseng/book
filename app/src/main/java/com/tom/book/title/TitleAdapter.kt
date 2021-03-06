@@ -12,7 +12,8 @@ import com.tom.book.room.Contact
 class TitleAdapter(
         private val contacts:ArrayList<Contact>,
         //Interface 是不能直接實例化，一定要透過class才能實例化
-        private var myClickHandler: IOnClickHandler
+        private var myClickHandler: IOnClickHandler,
+        private var myIUpDate: IUpDate
 ): RecyclerView.Adapter<TitleAdapter.ViewHolder>() {
 
 
@@ -51,7 +52,7 @@ class TitleAdapter(
         holder.bind(pickedItem)
 
         holder.itemView.setOnClickListener {
-            Log.d("setOnClickListener", " posit: $pickedItem")
+            Log.d("setOnClickListener", " nowPosition: $position")
             myClickHandler.onAction(position)
         }
 
@@ -75,3 +76,7 @@ class TitleAdapter(
         abstract fun onAction(pos:Int): Unit
     }
 
+    interface IUpDate{
+        abstract fun update(contacts: ArrayList<Contact>): Unit
+
+    }
