@@ -1,4 +1,4 @@
-package com.tom.book.title
+1package com.tom.book.title
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ class TitleAdapter(
         private val contacts:ArrayList<Contact>,
         //Interface 是不能直接實例化，一定要透過class才能實例化
         private var myClickHandler: IOnClickHandler,
-        private var myIUpDate: IUpDate
+//        private val searchNewList:ArrayList<Contact>
 ): RecyclerView.Adapter<TitleAdapter.ViewHolder>() {
 
 
@@ -66,7 +66,14 @@ class TitleAdapter(
 //        }
 
 
+
     }
+//            private fun filter(searchNewList: ArrayList<Contact>){
+//            contacts.clear()
+//            contacts.addAll(searchNewList)
+//
+//
+//            }
 }
 
 
@@ -76,7 +83,6 @@ class TitleAdapter(
         abstract fun onAction(pos:Int): Unit
     }
 
-    interface IUpDate{
-        abstract fun update(contacts: ArrayList<Contact>): Unit
 
-    }
+
+

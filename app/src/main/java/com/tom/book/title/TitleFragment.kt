@@ -49,7 +49,7 @@ class TitleFragment : Fragment() {
             val enterBookName = binding.edBookname.text.toString()
             val enterBookePrice = binding.edPrice.text.toString()
             Log.d("Fragment's search", "Fragment's search is work")
-            if (enterBookName.isNotBlank() && enterBookePrice.isNotBlank()) {
+            if (enterBookName.isNotBlank() || enterBookePrice.isNotBlank()) {
                 // TODO: 2021/3/6 加上雙重查詢(Price)
                 val newDataList = myViewModel.booksList.filter { cont -> cont.contactName.contains(enterBookName)} as ArrayList<Contact>
                 search(newDataList)
@@ -57,6 +57,20 @@ class TitleFragment : Fragment() {
             } else {
                 Toast.makeText(requireActivity(), "貼心小T醒❤ 你他媽把字填完 >< 💦", Toast.LENGTH_LONG).show()
             }
+//
+//            if (enterBookName.isNotBlank() && enterBookePrice.isBlank()) {
+//                val newNameList = myViewModel.booksList.filter { cont -> cont.contactName.contains(enterBookName) } as ArrayList<Contact>
+//                search(newNameList)
+//                Log.d("Fragment' Click search", "after filter enterBookName newData:$newNameList")
+//            }
+//            else if (enterBookName.isBlank() && enterBookePrice.isNotBlank()){
+//                val  newPriceList = myViewModel.booksList.filter { conPrice -> conPrice.contactPrice.toString().contains(enterBookePrice)} as ArrayList<Contact>
+//                search(newPriceList)
+//                Log.d("Fragment' Click search", "after filter enterBookePrice newData:$newPriceList")
+//            }
+//            else{
+//                Toast.makeText(requireActivity(), "貼心小T醒❤ 你他媽把字填完 >< 💦", Toast.LENGTH_LONG).show()
+//            }
         }
         return binding.root
     }
@@ -156,12 +170,6 @@ class TitleFragment : Fragment() {
 
 
 
-
-
-
-
-
-
     private fun initAdapter() {
         //指定Recyclerview給LinearLayoutManager
         myRecyclerView = binding.recyclerviewView
@@ -176,11 +184,7 @@ class TitleFragment : Fragment() {
                 //this代表當下物件，已經有給匿名類別了 所以this後面只能跑出 IOnClickHandler介面的東西
                 this@TitleFragment.itemSelected(pos)
             }
-        }, object : IUpDate {
-            override fun update(contacts: ArrayList<Contact>) {
-                update(dataset)
-            }
-        })
+        },)
         myRecyclerView.adapter = titleAdapter
     }
 

@@ -3,6 +3,7 @@ package com.tom.book.title
 
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tom.book.room.Contact
@@ -10,22 +11,21 @@ import com.tom.book.room.Contact
 
 class TitleViewModel:ViewModel(){
 
-    var listLiveData:MutableLiveData<ArrayList<Contact>> = MutableLiveData()
 
 
 
-    private var _bookesList: ArrayList<Contact> = arrayListOf<Contact>(
-            Contact("你果你要吃飯，就吃麵",100),
-            Contact("你",1),
-            Contact("教你用1百元的鈔票，換到2個50元硬幣",200),
-            Contact("面試經驗分享_How to be washed",250),
-            Contact("格雷的媽媽為何取名叫做格雷媽媽",300),
-            Contact("你南天氣晴~",350),
+    private val _bookesList = mutableListOf<Contact>(
+            Contact("帶你分析中國老鐵情懷",199),
+            Contact("如何度過悠閒的禮拜四下午?",500),
+            Contact("富爸爸與窮爸爸",200),
+            Contact("色彩學經典",250),
+            Contact("高雄17天必去觀光景點",300),
+            Contact("深入直擊福原愛家庭內幕",99),
     )
 
 
     //下面一定要用val
-    val booksList: ArrayList<Contact>
+    val booksList: LiveData<Contact>
         get() = _bookesList
 
 
@@ -50,7 +50,9 @@ class TitleViewModel:ViewModel(){
 
 
     fun search(newDataList:ArrayList<Contact>){
-        _bookesList = newDataList
+        // TODO: 2021/3/7 為何不能直接用 _bookList = newDataList?
+        _bookesList.clear()
+        _bookesList.addAll(newDataList)
         Log.d("ViewModel fun search","viewModel search _bookList:$_bookesList")
     }
 
