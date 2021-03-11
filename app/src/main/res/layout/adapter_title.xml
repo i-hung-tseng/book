@@ -20,30 +20,32 @@
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
+
         <TextView
             android:id="@+id/adapterBookeName"
-            android:layout_width="400dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
             android:text="@{adapterData.contactName}"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/adapterBookePrice"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginLeft="19dp"
-            android:layout_marginTop="10dp"
-            android:inputType="number"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="200dp"
             android:text="@{@string/quote_format(adapterData.contactPrice)}"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/adapterBookeName"
-            app:layout_constraintStart_toEndOf="@+id/adapterBookeName"
-            app:layout_constraintTop_toTopOf="@+id/adapterBookeName" />
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

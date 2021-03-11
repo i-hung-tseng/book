@@ -1,21 +1,31 @@
-1package com.tom.book.title
+package com.tom.book.title
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.tom.book.R
 import com.tom.book.databinding.AdapterTitleBinding
 import com.tom.book.room.Contact
 
 
         //建構值代表，我今天呼叫這個Adapter時候，就已經實例化，我一定要傳入這些參數，並且我利用這些參數去做一些事情
 class TitleAdapter(
-        private val contacts:ArrayList<Contact>,
         //Interface 是不能直接實例化，一定要透過class才能實例化
         private var myClickHandler: IOnClickHandler,
 //        private val searchNewList:ArrayList<Contact>
 ): RecyclerView.Adapter<TitleAdapter.ViewHolder>() {
 
+            //先製作一個空的質
+            private val contacts:ArrayList<Contact> = arrayListOf()
+
+            //清除所有資料，再給一個新的質
+             fun updateList(list:ArrayList<Contact>){
+                contacts.clear()
+                contacts.addAll(list)
+                notifyDataSetChanged()
+            }
 
     inner class ViewHolder(private val binding: AdapterTitleBinding) : RecyclerView.ViewHolder
     (binding.root) {
@@ -35,9 +45,18 @@ class TitleAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = AdapterTitleBinding.inflate(inflater)
+
+        // TODO: 2021/3/10 這邊原本沒有參考adapter_title的Layout，但是還是可以拿到資料
+        val binding = DataBindingUtil.inflate<AdapterTitleBinding>(LayoutInflater.
+        from(parent.context), R.layout.adapter_title, parent, false)
         return ViewHolder(binding)
+
+        //原本是寫下面的
+//        val inflater = LayoutInflater.from(parent.context)
+//        val binding = AdapterTitleBinding.inflate(inflater)
+//        return ViewHolder(binding)
+
+
     }
 
     override fun getItemCount(): Int = contacts.size
@@ -80,6 +99,8 @@ class TitleAdapter(
     //Interface是因為有時候funtion會在其他地方定義是因為，需要在其他地方如Fragment存取資料
     interface IOnClickHandler {
 //        fun onAction(binding: AdapterTitleBinding,position: Int){
+        //
+        //Interface介面純粹設計要有這個funtion，但是裡面的定義是要到實作他的時候才去定義
         abstract fun onAction(pos:Int): Unit
     }
 
