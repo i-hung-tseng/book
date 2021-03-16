@@ -1,6 +1,6 @@
 package com.tom.book.room
 
-data class Contact(
+data class Book(
     val contactName:String,
     val contactPrice:Int
 ) {} // end data class.

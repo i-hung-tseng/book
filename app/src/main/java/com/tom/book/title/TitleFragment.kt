@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tom.book.R
 import com.tom.book.databinding.FragmentTitleBinding
-import com.tom.book.room.Contact
+import com.tom.book.room.Book
+import viewModel.TitleViewModel
 
 
 class TitleFragment : Fragment() {
@@ -24,7 +24,7 @@ class TitleFragment : Fragment() {
     lateinit var titleAdapter: TitleAdapter
     lateinit var myRecyclerView: RecyclerView
     lateinit var myViewModel: TitleViewModel
-    lateinit var dataset: ArrayList<Contact>
+    lateinit var dataset: ArrayList<Book>
 
 
 
@@ -62,8 +62,8 @@ class TitleFragment : Fragment() {
 //        }
 
         // TODO: 2021/3/10 改成observe 
-        myViewModel.bookList.observe(viewLifecycleOwner, object:Observer<ArrayList<Contact>>{
-            override fun onChanged(t: ArrayList<Contact>) {
+        myViewModel.bookList.observe(viewLifecycleOwner, object:Observer<ArrayList<Book>>{
+            override fun onChanged(t: ArrayList<Book>) {
                 Log.d("bookList obser", "obser")
 //                titleAdapter.contacts = t
                 //每次有更改後，就進入下面的funtion
@@ -128,13 +128,13 @@ class TitleFragment : Fragment() {
         val newBookName = binding.edBookname.text.toString()
         val newPrice = binding.edPrice.text.toString()
         if (newBookName.isNotEmpty() && newPrice.isNotEmpty()) {
-            val afterFilterList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(newBookName) } as ArrayList<Contact>
+            val afterFilterList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(newBookName) } as ArrayList<Book>
             Log.d("Fragment add", "add if NotEmpty sampleBookList:${myViewModel.sampleBookList}")
             if (afterFilterList.isNotEmpty()) {
                 addButHaveOne(newBookName, newPrice.toInt())
                 Toast.makeText(requireActivity(),"已經有同名之書籍^^",Toast.LENGTH_LONG).show()
             } else {
-                val item1 = Contact(newBookName, newPrice.toInt())
+                val item1 = Book(newBookName, newPrice.toInt())
                 myViewModel.add(item1)
                 Log.d("Fragment add", "bookList:${myViewModel.bookList}")
                 editTextClearandNotifyChanged()
@@ -156,7 +156,7 @@ class TitleFragment : Fragment() {
         val newBookName = binding.edBookname.text.toString()
         val newPrice = binding.edPrice.text.toString()
         if (newBookName.isNotEmpty() && newPrice.isNotEmpty()) {
-            val item1 = Contact(newBookName, newPrice.toInt())
+            val item1 = Book(newBookName, newPrice.toInt())
             myViewModel.modify(position, item1)
             editTextClearandNotifyChanged()
         } else {
@@ -180,7 +180,7 @@ class TitleFragment : Fragment() {
     }
 
     private fun addButHaveOne(enterBookName:String,enterPrice:Int){
-        val newDataList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(enterBookName) } as ArrayList<Contact>
+        val newDataList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(enterBookName) } as ArrayList<Book>
         myViewModel.addedButHaveOne(newDataList)
 
     }
