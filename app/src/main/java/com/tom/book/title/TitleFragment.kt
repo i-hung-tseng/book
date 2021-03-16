@@ -106,8 +106,8 @@ class TitleFragment : Fragment() {
     //點擊Item後
     fun itemSelected(display: Int): Unit {
         binding.apply {
-            edBookname.setText(dataset[display].contactName)
-            edPrice.setText(dataset[display].contactPrice.toString())
+            edBookname.setText(dataset[display].bookName)
+            edPrice.setText(dataset[display].bookPrice.toString())
         }
         Log.d("onItemSelected", "$display")
 
@@ -128,7 +128,7 @@ class TitleFragment : Fragment() {
         val newBookName = binding.edBookname.text.toString()
         val newPrice = binding.edPrice.text.toString()
         if (newBookName.isNotEmpty() && newPrice.isNotEmpty()) {
-            val afterFilterList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(newBookName) } as ArrayList<Book>
+            val afterFilterList = myViewModel.sampleBookList.filter { cont -> cont.bookName.contains(newBookName) } as ArrayList<Book>
             Log.d("Fragment add", "add if NotEmpty sampleBookList:${myViewModel.sampleBookList}")
             if (afterFilterList.isNotEmpty()) {
                 addButHaveOne(newBookName, newPrice.toInt())
@@ -180,7 +180,7 @@ class TitleFragment : Fragment() {
     }
 
     private fun addButHaveOne(enterBookName:String,enterPrice:Int){
-        val newDataList = myViewModel.sampleBookList.filter { cont -> cont.contactName.contains(enterBookName) } as ArrayList<Book>
+        val newDataList = myViewModel.sampleBookList.filter { cont -> cont.bookName.contains(enterBookName) } as ArrayList<Book>
         myViewModel.addedButHaveOne(newDataList)
 
     }

@@ -96,7 +96,7 @@ class TitleViewModel:ViewModel() {
 
     fun search(enterBookName:String,enterBookePrice:String) {
         // TODO: 2021/3/7 為何不能直接用 _bookList = newDataList?
-        val newDataList = sampleBookList.filter { cont -> cont.contactName.contains(enterBookName) } as ArrayList<Book>
+        val newDataList = sampleBookList.filter { cont -> cont.bookName.contains(enterBookName) } as ArrayList<Book>
         _sampleBookList.clear()
         _sampleBookList.addAll(newDataList)
         Log.d("ViewModel fun search", "viewModel search _bookList:$_bookesList")
