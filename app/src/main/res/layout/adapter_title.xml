@@ -8,7 +8,7 @@
     <data>
         <variable
             name = "adapterData"
-            type = "com.tom.book.room.Contact" />
+            type = "com.tom.book.room.Book" />
         <variable
             name="viewModel"
             type="com.tom.book.title.TitleViewModel" />
