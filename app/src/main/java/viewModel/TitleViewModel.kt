@@ -6,10 +6,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tom.book.room.Book
+import com.tom.book.room.BookDao
 
 
+   //class  裡面會有 定義變數，跟funtion，操作變數要在funtion裡面
+class TitleViewModel(private val bookDao: BookDao):ViewModel() {
 
-class TitleViewModel:ViewModel() {
+
+    //相當於建構式
+//    init {
+//        bookDao.insert()
+//    }
+
 
 
 //      private var _bookesList = MutableLiveData<Contact>()
@@ -28,14 +36,24 @@ class TitleViewModel:ViewModel() {
 //            Contact("深入直擊福原愛家庭內幕",99),
 //          )
 
-    private val initBookeList :ArrayList<Book> = arrayListOf(
-        Book("帶你分析中國老鐵情懷", 199),
-        Book("如何度過悠閒的禮拜四下午?", 500),
-        Book("富爸爸與窮爸爸", 200),
-        Book("色彩學經典", 250),
-        Book("高雄17天必去觀光景點", 300),
-        Book("深入直擊福原愛家庭內幕", 99),
-    )
+//    private val initBookeList :ArrayList<Book> = arrayListOf(
+//        Book("帶你分析中國老鐵情懷", 199),
+//        Book("如何度過悠閒的禮拜四下午?", 500),
+//        Book("富爸爸與窮爸爸", 200),
+//        Book("色彩學經典", 250),
+//        Book("高雄17天必去觀光景點", 300),
+//        Book("深入直擊福原愛家庭內幕", 99),
+//    )
+
+       private val initBookeList :ArrayList<Book> = getAllBooks()
+//       private val initBookeList :ArrayList<Book> = bookDao.getAllBooks()
+
+       //這個funtion做完後，返回一個ArrayList等於bookDao.getAllBooks()
+       fun getAllBooks(): ArrayList<Book>{
+           //bookDao.getAllBooks()，等於一個ArrayList<Book>
+           val books: ArrayList<Book> = bookDao.getAllBooks()
+           return books
+       }
 
 
 
@@ -77,9 +95,11 @@ class TitleViewModel:ViewModel() {
 
 
     fun add(item: Book) {
-        Log.d("viewModle fun add ", "viewModel fun add is work")
-        _sampleBookList.add(0, item)
-        _bookesList.postValue(_sampleBookList)
+//        Log.d("viewModle fun add ", "viewModel fun add is work")
+//        _sampleBookList.add(0, item)
+//        _bookesList.postValue(_sampleBookList)
+
+
     }
 
     fun remove(item: Book) {
@@ -103,10 +123,10 @@ class TitleViewModel:ViewModel() {
         _bookesList.postValue(_sampleBookList)
     }
 
-    fun doInitBookeList(){
-        _sampleBookList.addAll(initBookeList)
-        _bookesList.postValue(_sampleBookList)
-    }
+//    fun doInitBookeList(){
+//        _sampleBookList.addAll(initBookeList)
+//        _bookesList.postValue(_sampleBookList)
+//    }
 
     fun addedButHaveOne(newDataList: ArrayList<Book>){
         _sampleBookList.clear()
